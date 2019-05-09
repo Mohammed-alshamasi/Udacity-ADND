@@ -1,37 +1,46 @@
 package com.example.movie_app;
 
-import android.app.LoaderManager;
+
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.Loader;
+
+
+
 
 import android.net.Uri;
 
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
 
 import com.example.movie_app.model.Movie;
+import com.example.movie_app.model.MovieViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<Movie>> , MovieAdapter.onClickDetail {
+public class MainActivity extends AppCompatActivity implements  MovieAdapter.onClickDetail {
     public RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
+    private MovieViewModel viewModel;
 
-    private ArrayList<Movie> movies;
+    private List<Movie> movies;
 
-    private final int ID = 7;
+    public static Boolean highest_rated = false;
+    public static Boolean popular = true;
+    public static Boolean fav = false;
 
-    private Boolean highest_rated=false;
-    private Boolean popular=true;
+    private static final String API_KEY = BuildConfig.ApiKey;
 
-    private static final String API_KEY=BuildConfig.ApiKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,42 +51,49 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         recyclerView = findViewById(R.id.recycler_view);
 
-        movieAdapter = new MovieAdapter(this, movies,this);
+        movieAdapter = new MovieAdapter(this, movies, this);
 
         recyclerView.setAdapter(movieAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);
-        getLoaderManager().initLoader(ID, null, this);
+        viewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
 
 
+            viewModel.getMovies(false, buildLink()).observe(this, new Observer<List<Movie>>() {
+                @Override
+                public void onChanged(@Nullable List<Movie> movieModels) {
+                    movies.clear();
+                    movies.addAll(movieModels);
+                    movieAdapter.notifyDataSetChanged();
+                }
+            });
+    }
 
-        }
-
+    @Override
     protected void onRestart() {
         super.onRestart();
-        getLoaderManager().restartLoader(ID,null,this);
+        if (fav) {
+            viewModel.getMovies(true, "").observe(this, new Observer<List<Movie>>() {
+
+                @Override
+                public void onChanged(@Nullable List<Movie> movieModels) {
+                    movies.clear();
+                    if (movieModels != null) {
+                        movies.addAll(movieModels);
+                        movieAdapter.notifyDataSetChanged();
+                    }
+                }
+            });
+        } else
+            viewModel.getMovies(false, buildLink()).observe(this, new Observer<List<Movie>>() {
+                @Override
+                public void onChanged(@Nullable List<Movie> movieModels) {
+                    movies.clear();
+                    movies.addAll(movieModels);
+                    movieAdapter.notifyDataSetChanged();
+                }
+            });
     }
-
-    @Override
-    public Loader<ArrayList<Movie>> onCreateLoader(int id, Bundle args) {
-        return new MovieLoader(this,buildLink());
-    }
-
-    @Override
-    public void onLoadFinished(Loader <ArrayList<Movie>> loader, ArrayList<Movie> movieArrayList) {
-        movies.clear();
-       movies.addAll(movieArrayList);
-        movieAdapter.notifyDataSetChanged();
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader<ArrayList<Movie>> loader) {
-
-        movies.clear();
-        movieAdapter.notifyDataSetChanged();
-    }
-
 
     private String buildLink() {
 
@@ -85,55 +101,89 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri uri = Uri.parse(baseUrl);
         Uri.Builder builder = uri.buildUpon();
 
-       if(highest_rated){
-            String TopRated ="https://api.themoviedb.org/3/movie/top_rated";
-           Uri uriTopRated = Uri.parse(TopRated);
-           Uri.Builder builderTopRated = uriTopRated.buildUpon();
-           builderTopRated.appendQueryParameter("api_key",API_KEY);
-           return builderTopRated.toString();
-        } else if (popular){
+        if (highest_rated) {
+            String TopRated = "https://api.themoviedb.org/3/movie/top_rated";
+            Uri uriTopRated = Uri.parse(TopRated);
+            Uri.Builder builderTopRated = uriTopRated.buildUpon();
+            builderTopRated.appendQueryParameter("api_key", API_KEY);
+            return builderTopRated.toString();
+        } else if (popular)
             builder.query("popular");
 
-        }
-
-        builder.appendQueryParameter("api_key",API_KEY);
+        builder.appendQueryParameter("api_key", API_KEY);
         return builder.toString();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-return true;
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-       int getId=item.getItemId();
-        if(getId==R.id.highest_rated){
-            highest_rated=true;
-            popular=false;
-            getLoaderManager().restartLoader(ID,null,this);
-        }
-        else{
-            popular=true;
-            highest_rated=false;
-            getLoaderManager().restartLoader(ID,null,this);
-        }
+        int getId = item.getItemId();
 
-   return true;
+        if (getId == R.id.highest_rated) {
+            highest_rated = true;
+            popular = false;
+            fav = false;
+            viewModel.getMovies(false, buildLink()).observe(this, new Observer<List<Movie>>() {
+                @Override
+                public void onChanged(@Nullable List<Movie> movieModels) {
+                    movies.clear();
+                    movies.addAll(movieModels);
+                    movieAdapter.notifyDataSetChanged();
+                }
+            });
+        } else if (getId == R.id.popular) {
+            popular = true;
+            highest_rated = false;
+            fav = false;
+            viewModel.getMovies(false, buildLink()).observe(this, new Observer<List<Movie>>() {
+                @Override
+                public void onChanged(@Nullable List<Movie> movieModels) {
+                    movies.clear();
+                    movies.addAll(movieModels);
+                    movieAdapter.notifyDataSetChanged();
+                }
+            });
+
+        } else if (getId == R.id.favourite) {
+            popular = false;
+            highest_rated = false;
+            fav = true;
+            if (fav) {
+                viewModel.getMovies(true, "").observe(this, new Observer<List<Movie>>() {
+
+                    @Override
+                    public void onChanged(@Nullable List<Movie> movieModels) {
+                        movies.clear();
+                        if (movieModels!=null) {
+                            movies.addAll(movieModels);
+                            movieAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+
+
+        }
+        return true;
     }
 
     public void detailClick(int pos) {
-        Intent intent=new Intent(this,ActivityDetail.class);
+        Intent intent = new Intent(this, ActivityDetail.class);
         Bundle b = new Bundle();
+        b.putInt("id", movies.get(pos).getMovieID());
+        b.putString("title", movies.get(pos).getTitle());
+        b.putString("plot", movies.get(pos).getPlot());
+        b.putString("image", movies.get(pos).getImage());
+        b.putString("rel_date", movies.get(pos).getRelease_date());
+        b.putDouble("rating", movies.get(pos).getRating());
 
-        b.putString("title",movies.get(pos).getTitle());
-        b.putString("plot",movies.get(pos).getPlot());
-        b.putString("image",movies.get(pos).getImage());
-        b.putString("rel_date",movies.get(pos).getRelease_date());
-        b.putDouble("rating",movies.get(pos).getRating());
-
-       intent.putExtras(b);
+        intent.putExtras(b);
         startActivity(intent);
     }
 }

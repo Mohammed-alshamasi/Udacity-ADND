@@ -11,4 +11,9 @@
         android:orderInCategory="2">
 
     </item>
+    <item android:title="@string/fav"
+        android:id="@+id/favourite"
+        android:orderInCategory="3">
+
+    </item>
 </menu>

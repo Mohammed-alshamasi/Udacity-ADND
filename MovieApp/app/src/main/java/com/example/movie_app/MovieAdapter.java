@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,14 @@ import com.example.movie_app.model.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHolder> {
     Context context;
-    ArrayList<Movie> movies;
+    List<Movie> movies;
     onClickDetail mOnClickDetail;
 
-    public MovieAdapter(Context context, ArrayList<Movie> m,onClickDetail onClickDetail){
+    public MovieAdapter(Context context, List<Movie> m,onClickDetail onClickDetail){
         this.context=context;
         this.movies= m;
         this.mOnClickDetail=onClickDetail;
@@ -40,8 +42,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ItemViewHold
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
 
-        Picasso.with(context).load(movies.get(i).getImage()).into(itemViewHolder.movieImage);
-
+        Picasso.with(context).load(movies.get(i).getMoviePoster()).into(itemViewHolder.movieImage);
+        Log.i("msg", "link is " + movies.get(i).getMoviePoster());
     }
 
     @Override
