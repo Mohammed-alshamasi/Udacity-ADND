@@ -23,8 +23,6 @@ public class ingredientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredients);
         textView=findViewById(R.id.text_view_ingredients);
 
-            textView.setVisibility(View.GONE);
-
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
 
