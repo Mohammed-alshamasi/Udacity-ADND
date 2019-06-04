@@ -14,18 +14,9 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         MasterFragment masterFragment =new MasterFragment();
-       fragmentManager.beginTransaction().add(R.id.frame_container,masterFragment,"MasterFragment").commit();
+       fragmentManager.beginTransaction().add(R.id.frame_container,masterFragment).commit();
 
     }
 
-    @Override
-    public void onBackPressed() {
-            if (getFragmentManager().getBackStackEntryCount() != 0) {
-                getFragmentManager().popBackStack();
-            } else {
-                super.onBackPressed();
-            }
-
-        }
     }
 

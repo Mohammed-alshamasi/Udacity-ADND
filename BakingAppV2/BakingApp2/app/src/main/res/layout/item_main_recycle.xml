@@ -5,23 +5,19 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp"
     card_view:cardMaxElevation="0dp"
     card_view:cardUseCompatPadding="true"
     card_view:contentPadding="4dp">
 
-<TextView
-    android:id="@+id/text_view_recycle_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textColor="#000"
-    android:textSize="18sp"
-    android:fontFamily="sans-serif"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="16dp" />
+    <ImageView
+        android:id="@+id/image_view_recycle"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        />
 
     <TextView
         android:id="@+id/error_tv"

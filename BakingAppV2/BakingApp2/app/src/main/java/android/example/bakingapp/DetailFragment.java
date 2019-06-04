@@ -10,13 +10,17 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+
 
 import com.squareup.picasso.Picasso;
 
@@ -59,7 +63,15 @@ public class DetailFragment extends Fragment {
         fab=rootView.findViewById(R.id.fab);
 
         Bundle bundle=this.getArguments();
+        Toolbar toolbar= rootView.findViewById(R.id.app_bar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(getActivity());
+            }
+        });
         if (bundle!=null){
 
          steps=bundle.getParcelableArrayList(KEY_DETAILS);
@@ -76,8 +88,11 @@ public class DetailFragment extends Fragment {
 
         }
         else{
-            name=recipe.getName();
-            id =recipe.getId();
+            if (recipe!=null){
+                name=recipe.getName();
+                id =recipe.getId();
+            }
+
             ShortDescAdapter shortDescAdapter = new ShortDescAdapter(getContext(), steps);
             recyclerView.setAdapter(shortDescAdapter);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -96,10 +111,12 @@ public class DetailFragment extends Fragment {
             }
         });
 
+
         CollapsingToolbarLayout collapsingToolbarLayout=rootView.findViewById(R.id.Collapsing_Toolbar_Layout);
         collapsingToolbarLayout.setTitle(name);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar_nut);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+
         switch (id){
             case 1:
                 imageView.setImageResource(R.drawable.nutella_pie);
@@ -146,4 +163,5 @@ public class DetailFragment extends Fragment {
         outState.putInt("id",id);
         outState.putParcelableArrayList("steps",steps);
     }
+
 }

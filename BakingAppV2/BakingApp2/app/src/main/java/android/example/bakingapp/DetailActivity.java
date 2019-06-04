@@ -7,6 +7,7 @@ import android.example.bakingapp.Data.Steps;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         getSupportActionBar().hide();
+
         if (savedInstanceState!=null){
             steps=new ArrayList<>();
             steps.addAll(savedInstanceState.getParcelableArrayList(KEY_DETAILS));
@@ -87,4 +89,5 @@ public class DetailActivity extends AppCompatActivity {
         outState.putParcelableArrayList(KEY_ING,ingredients);
         outState.putParcelable(KEY_REC,recipe);
     }
+
 }

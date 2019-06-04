@@ -11,11 +11,15 @@ import android.example.bakingapp.Widget.AppWidget;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,8 +51,26 @@ public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.It
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, final int i) {
-        itemViewHolder.textView.setText(Recipes.get(i).getName());
+        if (!TextUtils.isEmpty(Recipes.get(i).getImage())) {
+            Picasso.get().load(Recipes.get(i).getImage()).into(itemViewHolder.imageView);
+        } else {
 
+
+            switch (i) {
+                case 0:
+                    itemViewHolder.imageView.setImageResource(R.drawable.nutella_pie);
+                    break;
+                case 1:
+                    itemViewHolder.imageView.setImageResource(R.drawable.brownies);
+                    break;
+                case 2:
+                    itemViewHolder.imageView.setImageResource(R.drawable.yellow_cake);
+                    break;
+                case 3:
+                    itemViewHolder.imageView.setImageResource(R.drawable.cheesecake);
+                    break;
+            }
+        }
     }
 
     @Override
@@ -57,12 +79,12 @@ public class MasterListAdapter extends RecyclerView.Adapter<MasterListAdapter.It
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder{
-       TextView textView;
+       ImageView imageView;
 
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.text_view_recycle_main);
+            imageView = itemView.findViewById(R.id.image_view_recycle);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

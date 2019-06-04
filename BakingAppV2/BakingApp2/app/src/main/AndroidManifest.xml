@@ -22,9 +22,17 @@
                 android:resource="@xml/app_widget_info" />
         </receiver>
 
-        <activity android:name=".DetailActivity" />
-        <activity android:name=".VideoDescActivity" />
-        <activity android:name=".ingredientsActivity" />
+        <activity android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"/>
+
+        <activity android:name=".VideoDescActivity"
+            android:parentActivityName=".DetailActivity" />
+
+        <activity android:name=".ingredientsActivity"
+            android:parentActivityName=".DetailActivity"
+            android:launchMode="singleTop"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
 
