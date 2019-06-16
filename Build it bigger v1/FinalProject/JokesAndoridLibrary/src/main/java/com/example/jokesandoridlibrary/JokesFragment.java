@@ -23,7 +23,6 @@ TextView textView;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     final View rootView= inflater.inflate(R.layout.fragment_detail,container,false);
     textView=rootView.findViewById(R.id.textView);
-//        Intent intent =getActivity().getIntent();
 
         String gce =getActivity().getIntent().getStringExtra(GCE_KEY);
         textView.setText(gce);
