@@ -1,0 +1,21 @@
+Jun 16, 2019 11:53:18 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
+INFO: Overwriting system property key 'java.util.logging.config.file', value '/Users/Mooodii/google-cloud-sdk/platform/google_appengine/google/appengine/tools/java/config/sdk/logging.properties' with value 'WEB-INF/logging.properties' from '/Users/Mooodii/Desktop/Build it bigger 2/FinalProject/backend/build/exploded-backend/WEB-INF/appengine-web.xml'
+2019-06-16 23:53:18.740:INFO::main: Logging initialized @1964ms to org.eclipse.jetty.util.log.StdErrLog
+2019-06-16 23:53:18.863:WARN:oejs.AbstractConnector:main: Ignoring deprecated socket close linger time
+Jun 16, 2019 8:53:19 PM com.google.appengine.tools.development.IsolatedAppClassLoader checkWorkingDirectory
+WARNING: Your working directory, (/Users/Mooodii/Desktop/Build it bigger 2/FinalProject/backend) is not equal to your 
+web application root (/Users/Mooodii/Desktop/Build it bigger 2/FinalProject/backend/build/exploded-backend)
+You will not be able to access files from your working directory on the production server.
+
+2019-06-16 23:53:19.464:INFO:oejs.Server:main: jetty-9.4.14.v20181114; built: 2018-11-14T21:20:31.478Z; git: c4550056e785fb5665914545889f21dc136ad9e6; jvm 1.8.0_152-release-1343-b01
+2019-06-16 23:53:20.295:INFO:oejsh.ContextHandler:main: Started c.g.a.t.d.j.DevAppEngineWebAppContext@4e5ed836{/,file:///Users/Mooodii/Desktop/Build%20it%20bigger%202/FinalProject/backend/build/exploded-backend/,AVAILABLE}{/Users/Mooodii/Desktop/Build it bigger 2/FinalProject/backend/build/exploded-backend}
+2019-06-16 23:53:20.295:INFO:oejs.session:main: DefaultSessionIdManager workerName=node0
+2019-06-16 23:53:20.296:INFO:oejs.session:main: node0 Scavenging disabled
+2019-06-16 23:53:20.310:INFO:oejs.AbstractConnector:main: Started NetworkTrafficSelectChannelConnector@48e1f6c7{HTTP/1.1,[http/1.1]}{localhost:8888}
+2019-06-16 23:53:20.323:INFO:oejs.Server:main: Started @3548ms
+Jun 16, 2019 8:53:20 PM com.google.appengine.tools.development.AbstractModule startup
+INFO: Module instance default is running at http://localhost:8888/
+Jun 16, 2019 8:53:20 PM com.google.appengine.tools.development.AbstractModule startup
+INFO: The admin console is running at http://localhost:8888/_ah/admin
+Jun 16, 2019 11:53:20 PM com.google.appengine.tools.development.DevAppServerImpl doStart
+INFO: Dev App Server is now running
