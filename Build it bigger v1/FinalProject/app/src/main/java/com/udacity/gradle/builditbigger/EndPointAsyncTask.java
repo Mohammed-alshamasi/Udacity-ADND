@@ -49,7 +49,7 @@ public class EndPointAsyncTask extends AsyncTask<Context,Void,String> {
 
         } catch (IOException e) {
             Log.d("=====",e.getMessage());
-            return e.getMessage();
+            return "";
         }
     }
 

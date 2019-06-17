@@ -24,6 +24,7 @@ TextView textView;
     final View rootView= inflater.inflate(R.layout.fragment_detail,container,false);
     textView=rootView.findViewById(R.id.textView);
 
+
         String gce =getActivity().getIntent().getStringExtra(GCE_KEY);
         textView.setText(gce);
         return rootView;
