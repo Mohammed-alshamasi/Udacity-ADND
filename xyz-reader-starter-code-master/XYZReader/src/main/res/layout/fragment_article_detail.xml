@@ -2,12 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/draw_insets_frame_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@style/Theme.AppCompat.Light.DarkActionBar">
 
     <com.example.xyzreader.ui.ObservableScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/Theme.AppCompat.Light.DarkActionBar">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -19,12 +21,12 @@
                 android:layout_height="wrap_content">
                 <!--suppress AndroidLintContentDescription -->
                 <ImageView
-                android:id="@+id/photo"
-                android:layout_width="match_parent"
-                android:layout_height="310dp"
+                    android:id="@+id/photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="310dp"
                     android:scaleType="centerCrop"
 
-                />
+                    />
 
                 <View
                     android:layout_width="match_parent"
@@ -97,14 +99,14 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/share_fab"
         android:stateListAnimator="@anim/fab_state_list_anim"
-        android:background="@drawable/add_fab_background"
+        android:background="@color/colorAccent"
         android:layout_gravity="bottom|end"
         android:layout_marginRight="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:src="@drawable/ic_share"
-        android:elevation="@dimen/fab_elevation"
+        android:elevation="6dp"
         android:contentDescription="@string/action_share" />
 
 </com.example.xyzreader.ui.DrawInsetsFrameLayout>
