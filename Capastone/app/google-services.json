@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "675376794184",
+    "firebase_url": "https://boredchat-268aa.firebaseio.com",
+    "project_id": "boredchat-268aa",
+    "storage_bucket": "boredchat-268aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675376794184:android:0fbd2fe9556c57d0",
+        "android_client_info": {
+          "package_name": "com.example.capastone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675376794184-d2g8mdjv1oh5j7s8l7792ckahlprel27.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWqDssPXrWoWlv9Vi4oiQOxiYKOmf33D0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675376794184-d2g8mdjv1oh5j7s8l7792ckahlprel27.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
