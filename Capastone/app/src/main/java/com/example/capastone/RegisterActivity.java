@@ -36,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setTitle(R.string.register);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
@@ -58,9 +58,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String txt_password = mPassword.getText().toString();
 
                 if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
-                    Toast.makeText(RegisterActivity.this, "All fileds are required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.Error_fileds), Toast.LENGTH_SHORT).show();
                 } else if (txt_password.length() < 6 ){
-                    Toast.makeText(RegisterActivity.this, "password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.Password_error), Toast.LENGTH_SHORT).show();
                 } else {
                     Register(txt_username, txt_email, txt_password);
                 }
@@ -78,11 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
                     FirebaseUser firebaseUser=auth.getCurrentUser();
                     assert firebaseUser != null;
                     String userId= firebaseUser.getUid();
-                    ref= FirebaseDatabase.getInstance().getReference("User").child(userId);
+                    ref= FirebaseDatabase.getInstance().getReference(getString(R.string.User)).child(userId);
                     HashMap<String , String> hashMap=new HashMap<>();
-                    hashMap.put("id",userId);
-                    hashMap.put("username",u);
-                    hashMap.put("imageURL","default");
+                    hashMap.put(getString(R.string.id),userId);
+                    hashMap.put(getString(R.string.Username_small),u);
+                    hashMap.put(getString(R.string.imageUrl),getString(R.string.Default_settings));
                     ref.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 else
-                    Toast.makeText(RegisterActivity.this,"You can't register with this email or password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,getString(R.string.email_password_error),Toast.LENGTH_SHORT).show();
             }
         });
     }

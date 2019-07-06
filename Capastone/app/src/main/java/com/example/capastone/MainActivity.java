@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.capastone.AsyncTask.InternetCheck;
 import com.example.capastone.Fragments.ChatsFragment;
 import com.example.capastone.Fragments.ProfileFragment;
 import com.example.capastone.Fragments.UsersFragment;
@@ -34,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout=findViewById(R.id.tab_layout);
         viewPager=findViewById(R.id.view_pager);
 
-
-
         ViewPageAdapter viewPageAdapter=new ViewPageAdapter(getSupportFragmentManager());
         viewPageAdapter.addFragment("Chats",new ChatsFragment());
         viewPageAdapter.addFragment("Users",new UsersFragment());
@@ -44,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         tabLayout.setupWithViewPager(viewPager);
+        InternetCheck internetCheck=new InternetCheck();
+        internetCheck.execute(this);
     }
 
     @Override

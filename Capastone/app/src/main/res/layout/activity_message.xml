@@ -27,9 +27,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_send"
             android:background="@android:color/transparent"
-            android:hint="Type a message..."
+            android:hint="@string/type_a_message"
             android:layout_toLeftOf="@id/btn_send"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/btn_send" />
 
         <ImageButton
             android:layout_width="40dp"
@@ -37,7 +38,8 @@
             android:background="@drawable/ic_send_black_24dp"
             android:id="@+id/btn_send"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/send_message_button"/>
 
     </RelativeLayout>
 

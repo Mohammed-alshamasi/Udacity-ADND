@@ -2,6 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs{
+        config{
+            keyAlias'test'
+            keyPassword'test'
+            storeFile file('Mooodii/Desktop/My KeyStore for chat')
+            storePassword'1234'
+            //not my password just a dummy password
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.capastone"
@@ -15,6 +24,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }

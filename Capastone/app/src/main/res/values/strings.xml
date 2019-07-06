@@ -8,4 +8,18 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="read">Read</string>
+    <string name="Error_fileds">All fileds are required</string>
+    <string name="Password_error">password must be at least 6 characters</string>
+    <string name="User">User</string>
+    <string name="id">id</string>
+    <string name="Username_small">username</string>
+    <string name="imageUrl">imageURL</string>
+    <string name="Default_settings">default</string>
+    <string name="email_password_error">You can\'t register with this email or password</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="hello">hello</string>
+    <string name="send_message_button">Send Message button</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="Widget_text">You must be bored Click here to Chat</string>
 </resources>

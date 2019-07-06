@@ -18,12 +18,13 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/profile_image"
         android:layout_marginLeft="5dp"
-        android:text="hello"
+        android:text="@string/hello"
         android:id="@+id/show_message"
         android:textSize="18sp"
         android:padding="8dp"
         android:textColor="#121212"
-        android:background="#fff"/>
+        android:background="#fff"
+        android:layout_toEndOf="@id/profile_image" />
 
 
 </RelativeLayout>

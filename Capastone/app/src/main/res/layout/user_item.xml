@@ -20,6 +20,7 @@
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
         android:textColor="#121212"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:layout_marginStart="10dp" />
 
 </RelativeLayout>
