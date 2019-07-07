@@ -22,4 +22,10 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="Widget_text">You must be bored Click here to Chat</string>
+    <string name="upload">Uploading...</string>
+    <string name="failed">Failed!</string>
+    <string name="no_image">No image selected</string>
+    <string name="upload_prog">Upload in preogress</string>
+    <string name="auth_fail">Auth failed</string>
+    <string name="random_user_from_your_list">Random user from your List:</string>
 </resources>

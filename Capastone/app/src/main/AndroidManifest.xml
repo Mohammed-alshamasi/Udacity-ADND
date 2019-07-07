@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.capastone">
+    package="com.mohammedalshamasi.capastone">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".MyWidget">
+        <receiver android:name="com.mohammedalshamasi.capastone.MyWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -25,10 +25,10 @@
         </receiver>
 
         <activity
-            android:name=".MessageActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.mohammedalshamasi.capastone.MessageActivity"
+            android:parentActivityName="com.mohammedalshamasi.capastone.MainActivity" />
         <activity
-            android:name=".StartActivity"
+            android:name="com.mohammedalshamasi.capastone.StartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,12 +37,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".StartActivity" />
+            android:name="com.mohammedalshamasi.capastone.LoginActivity"
+            android:parentActivityName="com.mohammedalshamasi.capastone.StartActivity" />
         <activity
-            android:name=".RegisterActivity"
-            android:parentActivityName=".StartActivity" />
-        <activity android:name=".MainActivity" />
+            android:name="com.mohammedalshamasi.capastone.RegisterActivity"
+            android:parentActivityName="com.mohammedalshamasi.capastone.StartActivity" />
+        <activity android:name="com.mohammedalshamasi.capastone.MainActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
